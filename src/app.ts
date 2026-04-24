@@ -98,29 +98,29 @@ app.get("/break", (_req: Request, res: Response) => {
 });
 
 // Teste de coverage
-app.post("/calc", (req, res) => {
-  const { a, b, op } = req.body;
+// app.post("/calc", (req, res) => {
+//   const { a, b, op } = req.body;
 
-  if (op === "sum") {
-    return res.json({ result: a + b });
-  }
+//   if (op === "sum") {
+//     return res.json({ result: a + b });
+//   }
 
-  if (op === "sub") {
-    return res.json({ result: a - b });
-  }
+//   if (op === "sub") {
+//     return res.json({ result: a - b });
+//   }
 
-  if (op === "mul") {
-    return res.json({ result: a * b });
-  }
+//   if (op === "mul") {
+//     return res.json({ result: a * b });
+//   }
 
-  if (op === "div") {
-    if (b === 0) {
-      return res.status(400).json({ error: "division by zero" });
-    }
-    return res.json({ result: a / b });
-  }
+//   if (op === "div") {
+//     if (b === 0) {
+//       return res.status(400).json({ error: "division by zero" });
+//     }
+//     return res.json({ result: a / b });
+//   }
 
-  return res.status(400).json({ error: "invalid operation" });
-});
+//   return res.status(400).json({ error: "invalid operation" });
+// });
 
 export default app;
