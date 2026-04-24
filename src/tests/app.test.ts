@@ -52,49 +52,49 @@ describe("API Endpoints", () => {
     expect(res.body.status).toBe("ok");
   });
 
-//   // ❌ /healthcheck FAIL
-//   it("GET /healthcheck should return unhealthy", async () => {
-//     pool.query.mockRejectedValueOnce(new Error("DB error"));
+  // ❌ /healthcheck FAIL
+  it("GET /healthcheck should return unhealthy", async () => {
+    pool.query.mockRejectedValueOnce(new Error("DB error"));
 
-//     const res = await request(app).get("/healthcheck");
+    const res = await request(app).get("/healthcheck");
 
-//     expect(res.status).toBe(500);
-//     expect(res.body.status).toBe("unhealthy");
-//   });
+    expect(res.status).toBe(500);
+    expect(res.body.status).toBe("unhealthy");
+  });
 
-//   // ✅ /database OK
-//   it("POST /database should insert data", async () => {
-//     pool.query
-//       .mockResolvedValueOnce({}) // create table
-//       .mockResolvedValueOnce({
-//         rows: [{ id: 1, created_at: new Date() }],
-//       });
+  // ✅ /database OK
+  it("POST /database should insert data", async () => {
+    pool.query
+      .mockResolvedValueOnce({}) // create table
+      .mockResolvedValueOnce({
+        rows: [{ id: 1, created_at: new Date() }],
+      });
 
-//     const res = await request(app).post("/database");
+    const res = await request(app).post("/database");
 
-//     expect(res.status).toBe(201);
-//     expect(res.body.message).toBe("Data saved successfully");
-//   });
+    expect(res.status).toBe(201);
+    expect(res.body.message).toBe("Data saved successfully");
+  });
 
-//   // ❌ /database FAIL
-//   it("POST /database should fail", async () => {
-//     pool.query.mockRejectedValueOnce(new Error("DB error"));
+  // ❌ /database FAIL
+  it("POST /database should fail", async () => {
+    pool.query.mockRejectedValueOnce(new Error("DB error"));
 
-//     const res = await request(app).post("/database");
+    const res = await request(app).post("/database");
 
-//     expect(res.status).toBe(500);
-//     expect(res.body.error).toBeDefined();
-//   });
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBeDefined();
+  });
 
-//   // 💥 /break
-//   it("GET /break should trigger exit", async () => {
-//     const res = await request(app).get("/break");
+  // 💥 /break
+  it("GET /break should trigger exit", async () => {
+    const res = await request(app).get("/break");
 
-//     expect(res.status).toBe(200);
+    expect(res.status).toBe(200);
 
-//     // espera o setTimeout
-//     await new Promise((resolve) => setTimeout(resolve, 150));
+    // espera o setTimeout
+    await new Promise((resolve) => setTimeout(resolve, 150));
 
-//     expect(exitMock).toHaveBeenCalledWith(1);
-//   });
+    expect(exitMock).toHaveBeenCalledWith(1);
+  });
 });
