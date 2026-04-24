@@ -89,13 +89,13 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
 
-  # ## Blocks pipeline if did not pass quality gate. Activate only for production
-  #     - name: SonarCloud Quality Gate
-  #       uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
-  #       timeout-minutes: 5
-  #       env:
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #         SONAR_PROJECT_KEY: Minsait-Teste_desafio-minsait
+  ## Blocks pipeline if did not pass quality gate. Activate only for production
+      - name: SonarCloud Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: Minsait-Teste_desafio-minsait
 
 
   # sonar_scan:
