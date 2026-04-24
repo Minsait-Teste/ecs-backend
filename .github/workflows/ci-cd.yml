@@ -78,7 +78,7 @@ jobs:
       - name: Run SonarQube analysis
         run: |
           npx sonar-scanner \
-            -Dsonar.projectKey=Minsait-Teste_desafio-minsait \
+            -Dsonar.projectKey=Minsait-Teste_ecs-backend \
             -Dsonar.organization=minsait-teste \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
