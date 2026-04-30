@@ -1,12 +1,12 @@
 name: Call CI Pipeline
 
 on:
-  push:
-    branches: [ hml ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   call-pipeline:
-    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/ci.yml@main
+    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/quality.yml@main
 
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
