@@ -1,0 +1,15 @@
+name: Call CI Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  call-pipeline:
+    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/quality.yml@main
+
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # SONAR_PROJECT_KEY: Minsait-Teste_ecs-backend
+      # SONAR_ORGANIZATION: minsait-teste
+      # SONAR_HOST_URL: https://sonarcloud.io
