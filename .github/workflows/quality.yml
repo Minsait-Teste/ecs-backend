@@ -15,4 +15,3 @@ jobs:
       # SONAR_PROJECT_KEY: Minsait-Teste_ecs-backend
       # SONAR_ORGANIZATION: minsait-teste
       # SONAR_HOST_URL: https://sonarcloud.io
-
