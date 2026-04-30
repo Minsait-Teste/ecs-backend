@@ -6,7 +6,7 @@ on:
 
 jobs:
   call-pipeline:
-    uses: minsait-teste/ci-templates/.github/workflows/ci.yml@main
+    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/ci.yml@main
 
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
