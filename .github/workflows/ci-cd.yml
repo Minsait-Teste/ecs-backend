@@ -1,13 +1,13 @@
 name: CI/CD Pipeline for TypeScript API
 
 on:
-  push:
-    branches:
-      - hml
+  # push:
+  #   branches:
+  #     - hml
   # pull_request:
   #   branches:
   #     - main
-  # workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   validate_files:
