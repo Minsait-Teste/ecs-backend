@@ -6,7 +6,7 @@ on:
 
 jobs:
   ci-workflow:
-    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/ci.yml@main
+    uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/release.yml@main
 
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
