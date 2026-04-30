@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  call-pipeline:
+  quality-workflow:
     uses: Minsait-Teste/CI-CD-Workflows/.github/workflows/quality.yml@main
 
     secrets:
