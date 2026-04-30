@@ -6,4 +6,5 @@ export default {
       "src/**/*.ts",
       "!src/index.ts" // 👈 ignora entrypoint
     ],
+    testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   };
