@@ -80,10 +80,6 @@ app.post("/database", async (_req: Request, res: Response) => {
 /**
  * ENDPOINT /break
  * QUEBRA A APLICAÇÃO DE PROPÓSITO 💥
- * Ideal para testar:
- * - ECS restart
- * - ALB health check
- * - Auto Healing
  */
 app.get("/break", (_req: Request, res: Response) => {
   res.json({

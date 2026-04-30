@@ -12,7 +12,10 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+    networks:
+      - aws-network
+    restart: always
+  
   backend:
     build:
       context: .
@@ -29,6 +32,13 @@ services:
       DB_NAME: appdb
     depends_on:
       - db
+    networks:
+      - aws-network
+    restart: always
+
+networks:
+  aws-network:
+    driver: bridge
 
 volumes:
   postgres_data:

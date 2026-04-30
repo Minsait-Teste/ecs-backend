@@ -3,7 +3,7 @@ name: CI/CD Pipeline for TypeScript API
 on:
   push:
     branches:
-      - main
+      - hml
   # pull_request:
   #   branches:
   #     - main

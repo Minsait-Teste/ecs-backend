@@ -1,0 +1,15 @@
+name: Call CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  call-pipeline:
+    uses: minsait-teste/ci-templates/.github/workflows/ci.yml@main
+
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_PROJECT_KEY: Minsait-Teste_ecs-backend
+      SONAR_ORGANIZATION: minsait-teste
+      SONAR_HOST_URL: https://sonarcloud.io
