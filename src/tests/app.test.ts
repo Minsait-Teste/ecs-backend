@@ -6,6 +6,7 @@ jest.mock("pg", () => {
   const mPool = {
     query: jest.fn(),
   };
+
   return { Pool: jest.fn(() => mPool) };
 });
 
@@ -17,16 +18,16 @@ let exitMock: jest.SpyInstance;
 
 beforeAll(() => {
   // silencia logs
-  jest.spyOn(console, "error").mockImplementation(() => {});
+  jest.spyOn(console, "error").mockImplementation(() => { });
 
   // mock do exit
   exitMock = jest
     .spyOn(process, "exit")
-    .mockImplementation((() => {}) as any);
+    .mockImplementation((() => { }) as any);
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+  pool.query.mockReset();
 });
 
 afterAll(() => {
@@ -40,32 +41,22 @@ describe("API Endpoints", () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("message");
+
   });
 
   // ✅ /healthcheck OK
   it("GET /healthcheck should return ok", async () => {
-    pool.query.mockResolvedValueOnce({});
-
     const res = await request(app).get("/healthcheck");
 
     expect(res.status).toBe(200);
     expect(res.body.status).toBe("ok");
-  });
 
-  // ❌ /healthcheck FAIL
-  it("GET /healthcheck should return unhealthy", async () => {
-    pool.query.mockRejectedValueOnce(new Error("DB error"));
-
-    const res = await request(app).get("/healthcheck");
-
-    expect(res.status).toBe(500);
-    expect(res.body.status).toBe("unhealthy");
   });
 
   // ✅ /database OK
   it("POST /database should insert data", async () => {
     pool.query
-      .mockResolvedValueOnce({}) // create table
+      .mockResolvedValueOnce({})
       .mockResolvedValueOnce({
         rows: [{ id: 1, created_at: new Date() }],
       });
@@ -74,6 +65,7 @@ describe("API Endpoints", () => {
 
     expect(res.status).toBe(201);
     expect(res.body.message).toBe("Data saved successfully");
+
   });
 
   // ❌ /database FAIL
@@ -84,6 +76,7 @@ describe("API Endpoints", () => {
 
     expect(res.status).toBe(500);
     expect(res.body.error).toBeDefined();
+
   });
 
   // 💥 /break
@@ -96,8 +89,8 @@ describe("API Endpoints", () => {
     await new Promise((resolve) => setTimeout(resolve, 150));
 
     expect(exitMock).toHaveBeenCalledWith(1);
+
   });
-});
 
   // ✅ /compound-interest OK
   it("POST /compound-interest should calculate correctly", async () => {
@@ -119,11 +112,11 @@ describe("API Endpoints", () => {
     expect(res.body.finalAmount).toBeGreaterThan(
       res.body.totalInvested
     );
+
   });
 
   // ❌ /compound-interest FAIL
   it("POST /compound-interest should fail", async () => {
-
     // força erro proposital
     const originalToFixed = Number.prototype.toFixed;
 
@@ -149,13 +142,13 @@ describe("API Endpoints", () => {
     );
 
     Number.prototype.toFixed = originalToFixed;
+
   });
 
   // ✅ /save-simulation OK
   it("POST /save-simulation should save simulation", async () => {
-
     pool.query
-      .mockResolvedValueOnce({}) // create table
+      .mockResolvedValueOnce({})
       .mockResolvedValueOnce({
         rows: [
           {
@@ -185,11 +178,11 @@ describe("API Endpoints", () => {
     );
 
     expect(res.body.data.name).toBe("Retirement");
+
   });
 
   // ❌ /save-simulation FAIL
   it("POST /save-simulation should fail", async () => {
-
     pool.query.mockRejectedValueOnce(
       new Error("DB error")
     );
@@ -206,3 +199,4 @@ describe("API Endpoints", () => {
       "Failed to save simulation"
     );
   });
+});

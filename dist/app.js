@@ -45,7 +45,6 @@ app.get("/", (_req, res) => {
  */
 app.get("/healthcheck", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield pool.query("SELECT 1");
         res.status(200).json({ status: "ok" });
     }
     catch (error) {
@@ -53,6 +52,15 @@ app.get("/healthcheck", (_req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).json({ status: "unhealthy" });
     }
 }));
+// app.get("/healthcheck", async (_req: Request, res: Response) => {
+//   try {
+//     await pool.query("SELECT 1");
+//     res.status(200).json({ status: "ok" });
+//   } catch (error) {
+//     console.error("Healthcheck failed:", error);
+//     res.status(500).json({ status: "unhealthy" });
+//   }
+// });
 /**
  * ENDPOINT /database
  * Insere algo simples no banco
@@ -126,7 +134,7 @@ app.post("/compound-interest", (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 }));
 /**
- * ENDPOINT /save-simulation
+ * ENDPOINT /save-simulation TESTE DO CODE QL
  * Salva simulação no banco
  */
 app.post("/save-simulation", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

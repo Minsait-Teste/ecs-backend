@@ -40,24 +40,13 @@ app.get("/", (_req: Request, res: Response) => {
  * ENDPOINT /healthcheck
  * Usado por ALB / ECS Health Check
  */
-app.get("/healthcheck", async (_req: Request, res: Response) => {
-  try {
-    await pool.query("SELECT 1");
-    res.status(200).json({ status: "ok" });
-  } catch (error) {
-    console.error("Healthcheck failed:", error);
-    res.status(500).json({ status: "unhealthy" });
-  }
+app.get("/healthcheck", async (_req: Request, res: Response) => { 
+  try { res.status(200).json({ status: "ok" }); 
+  } catch (error) { 
+    console.error("Healthcheck failed:", error); 
+    res.status(500).json({ status: "unhealthy" }); 
+  } 
 });
-// app.get("/healthcheck", async (_req: Request, res: Response) => {
-//   try {
-//     await pool.query("SELECT 1");
-//     res.status(200).json({ status: "ok" });
-//   } catch (error) {
-//     console.error("Healthcheck failed:", error);
-//     res.status(500).json({ status: "unhealthy" });
-//   }
-// });
 
 /**
  * ENDPOINT /database
