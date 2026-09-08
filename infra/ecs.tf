@@ -67,27 +67,27 @@ resource "aws_ecs_task_definition" "app" {
   ])
 }
 
-# resource "aws_ecs_service" "app_service" {
-#   name            = "aws-bootcamp-service"
-#   cluster         = aws_ecs_cluster.main.id
-#   task_definition = aws_ecs_task_definition.app.arn
-#   desired_count   = 1
-#   launch_type     = "FARGATE"
+resource "aws_ecs_service" "app_service" {
+  name            = "aws-bootcamp-service"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.app.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
 
-#   network_configuration {
-#     subnets          = [module.network.public1_subnet.id, module.network.public2_subnet.id]
-#     security_groups  = [aws_security_group.ecs_sg.id]
-#     assign_public_ip = true
-#   }
+  network_configuration {
+    subnets          = [module.network.public1_subnet.id, module.network.public2_subnet.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
+    assign_public_ip = true
+  }
 
-#   load_balancer {
-#     target_group_arn = aws_lb_target_group.app_tg.arn
-#     container_name   = var.ecs_container_name
-#     container_port   = var.app_port
-#   }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.app_tg.arn
+    container_name   = var.ecs_container_name
+    container_port   = var.app_port
+  }
 
-#   depends_on = [ aws_db_instance.default ]
-# }
+  depends_on = [ aws_db_instance.default ]
+}
 
 # IAM role for ECS task execution
 resource "aws_iam_role" "ecs_task_execution_role" {
